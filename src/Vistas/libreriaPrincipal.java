@@ -77,6 +77,8 @@ public class libreriaPrincipal extends javax.swing.JFrame {
 
         jpBiblioteca = new javax.swing.JPopupMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jpCabecera = new javax.swing.JPanel();
         jllogo = new javax.swing.JLabel();
         txtBuscarLibro = new javax.swing.JTextField();
@@ -112,6 +114,19 @@ public class libreriaPrincipal extends javax.swing.JFrame {
 
         jMenuItem1.setText("jMenuItem1");
         jpBiblioteca.add(jMenuItem1);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BOOK_EAS");
@@ -177,6 +192,11 @@ public class libreriaPrincipal extends javax.swing.JFrame {
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/login.png"))); // NOI18N
         jButton9.setText("Ingresar");
         jButton9.setBorder(null);
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
@@ -456,6 +476,11 @@ public class libreriaPrincipal extends javax.swing.JFrame {
         btnprueba.setVisible(false);
     }//GEN-LAST:event_btnpruebaMouseExited
 
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        Login log = new Login();
+        log.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -520,6 +545,8 @@ public class libreriaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel jlReciente1;
     private javax.swing.JLabel jlReciente2;
     private javax.swing.JLabel jlReciente3;
