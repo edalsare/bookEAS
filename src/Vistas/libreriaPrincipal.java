@@ -1,6 +1,6 @@
 package Vistas;
 
-import com.mysql.cj.xdevapi.PreparableStatement;
+
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Point;
@@ -12,12 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import java.util.Locale;
+import modelo.conexion;
 
 public class libreriaPrincipal extends javax.swing.JFrame {
 
-    public static final String url = "jdbc:mysql://localhost:3306/libreria_eas";
-    public static final String usuario = "root";
-    public static final String pass = "";
+    
 
     public libreriaPrincipal() {
         initComponents();
@@ -28,20 +27,10 @@ public class libreriaPrincipal extends javax.swing.JFrame {
         mostrarDatos();
     }
 
-    public Connection getConnection() {
-        Connection conexion = null;
-        try {
-            conexion = (Connection) DriverManager.getConnection(url, usuario, pass);
-            System.out.println("Conexion exitosa");
-
-        } catch (Exception e) {
-            mensaje("Error de conexion" + e);
-        }
-        return conexion;
-    }
+    
 
     public void mostrarDatos() {
-        Connection conexion = null;
+        conexion con = new conexion();
         PreparedStatement ps;
         ResultSet rs;
 
@@ -50,7 +39,7 @@ public class libreriaPrincipal extends javax.swing.JFrame {
             String img[]=new String[4];
             int ban = 0;
             
-            conexion = (Connection) DriverManager.getConnection(url, usuario, pass);
+            Connection conexion = con.getConnection();
             String sql = "SELECT titulo,caratula FROM libro limit 4";
             ps = conexion.prepareStatement(sql);
             rs = ps.executeQuery();
