@@ -15,30 +15,32 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+import modelo.conexion;
 
 public class generos extends javax.swing.JFrame {
 
-    public static final String url = "jdbc:mysql://localhost:3306/libreria_eas";
-    public static final String usuario = "root";
-    public static final String pass = "";
+    conexion con = new conexion();
+    Dimension d;
+    Point p;
 
     public generos(String titulo) {
 
         initComponents();
         mostrarDatos(titulo);
+        d = jpGeneros.getSize();
+        p = jpGeneros.getLocation();
     }
 
     public void mostrarDatos(String titulo) {
         Border bor = new TitledBorder(titulo);
         jpGeneros.setBorder(bor);
-        Connection conexion = null;
         PreparedStatement ps;
         ResultSet rs;
 
         try {
             ArrayList<String> lista = new ArrayList<String>();
 
-            conexion = (Connection) DriverManager.getConnection(url, usuario, pass);
+            Connection conexion = con.getConnection();
             String sql = "SELECT Nombre_Sup FROM categoria_superior";
             ps = conexion.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -93,7 +95,7 @@ public class generos extends javax.swing.JFrame {
         jpGeneros.setLayout(jpGenerosLayout);
         jpGenerosLayout.setHorizontalGroup(
             jpGenerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
+            .addGap(0, 181, Short.MAX_VALUE)
         );
         jpGenerosLayout.setVerticalGroup(
             jpGenerosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,14 +126,13 @@ public class generos extends javax.swing.JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(1, 0));
         
-        Dimension d = jpGeneros.getSize();
-        Point p = jpGeneros.getLocation();
+        
         panel.setSize(d);
         panel.setLocation(p.x+d.width, p.y);
         panel.setVisible(true);
         add(panel);
         panel.add(new JLabel("FFFFffffffffffffffffff"));
-        setSize(d.width*2,d.height);
+        this.setSize(d.width*2,d.height);
         this.setVisible(true);
         //Point p = this.getLocationOnScreen();
         //Dimension d = this.getSize();
